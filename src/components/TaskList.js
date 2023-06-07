@@ -1,28 +1,12 @@
 import React from "react";
-import Task from "./Task";
-function TaskList({ tasks, selectedCategory, onDeleteTask }) {
-   let filteredTasks;
- 
-  //  const handleDeleteTask = (taskId) => {
-  //   filteredTasks = tasks.filter((task) => task.text !== taskId);
-    
-  // };
- 
-  if (selectedCategory === "All") {
-    filteredTasks = tasks;
-  } else {
-    filteredTasks = tasks.filter((task) => task.category === selectedCategory);
-  }
-
+import Task from "./Task"
+import {v4 as uuidv4} from "uuid"
+function TaskList({tasks,deleteAction}) {
   return (
     <div className="tasks">
-      {filteredTasks.map((task, index) => (
-        <Task key={index} task={task} onDelete={onDeleteTask} />
-      ))}
+      {tasks.map((task) => <Task key={uuidv4()} text={task.text} category= {task.category} HandleDelete={deleteAction}/>)}
     </div>
   );
 }
+
 export default TaskList;
-
-
-
